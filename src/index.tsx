@@ -1,10 +1,33 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+import { useEffect, useState } from 'react'
 
 interface Props {
-  text: string
+  url: string
+  data: any
 }
 
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+type State = {
+  isProcessing: boolean
+  data: any
+}
+
+export const useWorker = ({ url, data }: Props): State => {
+  const [state, setState] = useState<State>({
+    isProcessing: true,
+    data: null
+  })
+  let worker: Worker
+  useEffect(() => {
+    worker = new Worker(url)
+    worker.postMessage('message', data)
+    worker.onmessage = (e) => {
+      setState({
+        isProcessing: false,
+        data: e.data
+      })
+    }
+    return () => {
+      worker.terminate()
+    }
+  }, [])
+  return state
 }
