@@ -1,6 +1,6 @@
 {
-  "short_name": "use-comlink",
-  "name": "use-comlink",
+  "short_name": "use-webworker",
+  "name": "use-webworker",
   "icons": [
     {
       "src": "favicon.ico",

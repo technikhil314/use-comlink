@@ -1,10 +1,10 @@
 {
-  "name": "use-comlink",
+  "name": "use-webworker",
   "version": "1.0.0",
-  "description": "A react hook wrapper over comlink for using web workers",
+  "description": "A react hook wrapper over web worker API. Exposing worker messages as state.",
   "author": "technikhil314",
   "license": "MIT",
-  "repository": "technikhil314/use-comlink",
+  "repository": "technikhil314/use-webworker",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

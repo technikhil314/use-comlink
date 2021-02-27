@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { useWorker } from 'use-comlink'
-import 'use-comlink/dist/index.css'
+import { useWorker } from 'use-webworker'
 
 const App = () => {
   const { isProcessing, data } = useWorker({
