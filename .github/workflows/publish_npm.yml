@@ -1,0 +1,39 @@
+name: publish
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: install dependencies
+        run: |
+          npm ci --prod
+      - name: run static analysis
+        run: |
+          npx eslint --ext .js,.jsx . --fix
+      - name: run tests
+        run: |
+          cd example
+          npm ci --prod
+          npm run test
+      - name: build
+        run: |
+          npm run build
+      - name: publish
+        run: |
+          cd dist
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
