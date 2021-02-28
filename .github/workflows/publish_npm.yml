@@ -21,7 +21,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: install dependencies
         run: |
-          npm ci --prod
+          npm ci
       - name: run static analysis
         run: |
           npx eslint --ext .js,.jsx . --fix
