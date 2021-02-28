@@ -14,8 +14,8 @@ export default function useWorker({ url, data }: Props): State {
     isProcessing: true,
     data: null
   })
-  let worker: Worker
   useEffect(() => {
+    let worker: Worker
     worker = new Worker(url)
     worker.postMessage('message', data)
     worker.onmessage = (e) => {
@@ -24,9 +24,9 @@ export default function useWorker({ url, data }: Props): State {
         data: e.data
       })
     }
-    // return () => {
-    //   worker.terminate()
-    // }
+    return () => {
+      worker.terminate()
+    }
   }, [])
   return state
 }

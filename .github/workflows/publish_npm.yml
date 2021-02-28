@@ -25,11 +25,11 @@ jobs:
       - name: run static analysis
         run: |
           npx eslint --ext .js,.jsx . --fix
-      - name: run tests
-        run: |
-          cd example
-          npm ci --prod
-          npm run test
+      # - name: run tests
+      #   run: |
+      #     cd example
+      #     npm ci --prod
+      #     npm run test
       - name: build
         run: |
           npm run build
